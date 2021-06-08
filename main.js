@@ -24,3 +24,43 @@ function speak(){
     var utter_this=new SpeechSynthesisUtterance(first_data+second_data)
     synth.speak(utter_this);
 }
+function predict(){
+    var display_img=document.getElementById("captured_img");
+    classifier.classify(display_img, gotResult)
+}
+function gotResult(error, result){
+    if(error){
+        console.log(error)
+    }
+    else{
+        console.log(result)
+        document.getElementById("emo1_name").innerHTML=result[0].label;
+        prediction1=result[0].label;
+        prediction2=result[1].label;
+        document.getElementById("emo2_name").innerHTML=result[1].label;
+        if(result[0].label=="Sad"){
+            document.getElementById("emoji1").innerHTML="&#128577"
+        }
+        if(result[0].label=="Happy"){
+            document.getElementById("emoji1").innerHTML="&#128512"
+        }
+        if(result[0].label=="Angry"){
+            document.getElementById("emoji1").innerHTML="&#128545"
+        }
+        if(result[0].label=="Crying"){
+            document.getElementById("emoji1").innerHTML="&#128546"
+        }
+        if(result[1].label=="Sad"){
+            document.getElementById("emoji2").innerHTML="&#128577"
+        }
+        if(result[1].label=="Happy"){
+            document.getElementById("emoji2").innerHTML="&#128512"
+        }
+        if(result[1].label=="Angry"){
+            document.getElementById("emoji2").innerHTML="&#128545"
+        }
+        if(result[1].label=="Crying"){
+            document.getElementById("emoji2").innerHTML="&#128546"
+        }
+    }
+}
