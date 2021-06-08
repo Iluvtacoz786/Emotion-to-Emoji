@@ -62,5 +62,6 @@ function gotResult(error, result){
         if(result[1].label=="Crying"){
             document.getElementById("emoji2").innerHTML="&#128546"
         }
+        speak();
     }
 }
